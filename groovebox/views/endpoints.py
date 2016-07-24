@@ -169,11 +169,13 @@ class Search(MethodView):
         if not query:
             return []
 
-        artists = api.Artist.search(query, field="name", limit=5, page=page)
-        tracks = api.Track.search(query, field="name", limit=15, page=page)
         if songs:
             return [s.dict() for s in
                     api.Song.search(query, field="name", limit=15, page=page)]
+
+        artists = api.Artist.search(query, field="name", limit=5, page=page)
+        tracks = api.Track.search(query, field="name", limit=15, page=page)
+
         return {
             'artists': [a.dict() for a in artists],
             'tracks': [t.dict() for t in tracks]
