@@ -239,7 +239,7 @@ class Crawler(object):
             "rows": limit,
             "output": "json"
             }
-        r = requests.get(Archive.METADATA_URL, params=params).json()
+        r = requests.get(Archive.API_URL, params=params).json()
         rs = r['response']['docs']
         return list(filter(lambda r: r['identifier'] != 'etree', rs))
 
